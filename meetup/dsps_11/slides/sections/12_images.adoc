@@ -1,0 +1,7 @@
+== Images attribution
+
+* Datacenter - Phil Rogers - https://flic.kr/p/5YWVuo
+* Docker Logo https://www.docker.com/brand-guidelines
+* Android Logo https://developer.android.com/distribute/tools/promote/brand.html
+* Heart https://commons.wikimedia.org/wiki/File:Love_Heart_SVG.svg
+* Docker Architecture https://docs.docker.com/engine/understanding-docker/

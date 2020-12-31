@@ -1,0 +1,46 @@
+== Asciidoc
+.Asciidoc
+[quote, Asciidoc website, http://www.methods.co.nz/asciidoc/]
+____
+
+AsciiDoc is a text document format for writing notes, documentation, articles, books, ebooks, slideshows, web pages, man pages and blogs. AsciiDoc files can be translated to many formats including HTML, PDF, EPUB, man page.
+____
+
+== Asciidoctor
+
+*Asciidoctor* is a fast text processor and publishing toolchain for converting AsciiDoc written in _ruby_.
+
+* with jRuby runs in *JVM*
+* maven plugin available from *Maven Central*
+
+== Asciidoctor-docker
+https://hub.docker.com/r/asciidoctor/docker-asciidoctor/[_Official_ Asciidoctor container ]
+
+This Docker container provides:
+
+* Asciidoctor 1.5.4
+* Aciidoctor Diagram with Graphviz integration so you can use plantuml and graphiz diagrams
+* Asciidoctor PDF (alpha)
+* Asciidoctor EPUB3 (alpha)
+* Source highlighting using CodeRay or Pygments
+* Asciidoctor backends
+* Asciidoctor Fopub
+* Asciidoctor Confluence
+
+== Asciidoctor usage
+
+...........................................
+docker pull asciidoctor/docker-asciidoctor
+...........................................
+
+...........................................
+docker run -it --rm -v "$PWD:/documents/" asciidoctor/docker-asciidoctor asciidoctor @$ 
+...........................................
+
+
+...........................................
+function asciidoctor() {
+  docker run -it  -v $PWD:/documents/ asciidoctor/docker-asciidoctor asciidoctor $@
+}
+export -f asciidoctor
+...........................................

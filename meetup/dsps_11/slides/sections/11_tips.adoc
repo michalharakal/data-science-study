@@ -1,0 +1,16 @@
+== Tip&Tricks
+- use officaial images 
+- use your own base image as common foundation
+- use docker-compose.yml even for simple containers
+- __.docker_aliases__ 
+  https://github.com/mgcrea/dotfiles/blob/master/.bash_aliases  
+
+== Tip&Tricks Image size
+
+- use the same base image
+- https://www.ctl.io/developers/blog/post/optimizing-docker-images/ [Chain Your Commands => minimize layers count]
+- Flatten Your Image
+- static binaries based on "scratch" base image, in go http://stackoverflow.com/a/35003483
+- clean up unused layers, images
+
+  

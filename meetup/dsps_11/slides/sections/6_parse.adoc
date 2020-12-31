@@ -1,0 +1,9 @@
+== Parse.com replacement
+* Parse = Mongo DB + Parse Dashboard
+* docker image recommended by Parse creators _instainer/parse-server_
+
+Runs simply as 
+[source,shell,role=big]
+----
+docker run instainer/parse-server
+----

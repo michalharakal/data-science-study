@@ -1,0 +1,22 @@
+== What is this talk about?
+
+
+== What is this talk about?
+
+[role="canvas-caption", position="right"] 
+image::{img}/DockerAndAndroid_Docker.png[]
+
+== What is this talk about?
+[role="canvas-caption", position="right"] 
+image::{img}/DockerAndAndroid_DockerAndroid.png[]
+
+== What is this talk about?
+[role="canvas-caption", position="right"] 
+image::{img}/DockerAndAndroid_DockerAndroidLove.png[]
+
+
+== What is this talk not about?
+
+[role="canvas-caption", position="right"] 
+image::{img}/datacenter.jpg[]
+

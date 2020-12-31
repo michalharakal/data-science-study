@@ -1,0 +1,37 @@
+== There is a app for that.
+
+== There is a [line-through]#app# container for that.
+
+== Docker use cases
+
+=== Build environments
+* portable
+* repeatable
+* isolated
+
+== Docker use cases
+=== Toolchains
+* complex environments, technology stacks for tools, frameworks with deep dependecies
+* containers can run transparently (bash scripts, aliases)
+
+== Docker use cases
+=== Runtime environments
+* java
+* node.js
+* python/django
+* ...
+
+== Docker use cases
+=== Android development focused
+* Gitlab, Gitolite, Jenkins, Sonar, Stetho by Facebook
+* html5 cordova/PhoneGap
+* Google Cloud SDK (Google Play Store statistics scripts with gcutils utility)-official Docker image
+
+
+== Docker use cases
+=== Other
+* Scientific Computing Tools (SciPy - python, Tensorflow, OpenCV)
+* Docker and IDEs
+* Hacks and fun by Jessie Frazelle
+
+
