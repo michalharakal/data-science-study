@@ -1,0 +1,18 @@
+= Docker for Data Scientist
+
+This folder contains slides for intial part of Meetup https://www.meetup.com/de-DE/meetup-group-JClPpNQi/events/275601997/[DSPS#11 Docker for Data Scientist]
+
+
+== Compile slides with docker
+
+Presentaion slides are writen with *Asciidoc* which can be converted to _revealjs_ slides by calling standard _asciidoctor_ docker imagelike this:
+
+
+    docker run --rm -u $(id -u ${USER}):$(id -g ${USER})   -v $(pwd):/documents/ asciidoctor/docker-asciidoctor asciidoctor-revealjs -a revealjsdir=https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.9.2 -r asciidoctor-diagram index.adoc
+
+NOTE: setting a current user to run docker image is important, so generated files also belongs to the host user, not to root (whih is a default docker image user)
+
+
+== Sampel docker files
+
+*  https://github.com/Kaggle/docker-python/blob/master/Dockerfile

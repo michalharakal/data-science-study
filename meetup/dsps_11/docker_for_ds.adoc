@@ -1,6 +1,0 @@
-= Docker for Data Scientist
-
-
-== Real life samples
-
-*  https://github.com/Kaggle/docker-python/blob/master/Dockerfile
