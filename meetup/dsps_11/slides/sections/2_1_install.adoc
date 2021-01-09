@@ -1,0 +1,13 @@
+== Docker installation
+
+=== Windows 10
+* Install WSL2 (Windows subsystem for Linux) official guide by Microsoft
+* Docker Desktop for Windows
+
+=== Mac OS
+* Official *Docker for Mac*
+* Apple Silicon currently as "Apple M1 tech preview"
+
+=== Linux
+* following official instructions for mainstream distributions from Docker official docs
+* special HW/Distros have its own docs, even registry (e.g. Nvidia Jetson Nano).
