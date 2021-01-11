@@ -1,5 +1,6 @@
 == Tip&Tricks
 - use officaial images 
+- know your OS distribution 
 - use your own base image as common foundation
 - use docker-compose.yml even for simple containers
 - __.docker_aliases__ 
