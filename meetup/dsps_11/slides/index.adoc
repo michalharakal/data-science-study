@@ -1,47 +1,27 @@
-= Docker for Android developer
+= Docker for Data Scientist
 :presenter: Michal Harakal
-:email: michal.harakal@telekom.de
-:currentyear: 2016
+:email: michal.harakal@gmail.com
+:currentyear: 2021
 :backend: deckjs
 :deckjsdir: ../../asciidoc/deck.js
 :deckjs_transition: horizontal-slide
-:deckjs_theme: droidcon
 :goto:
 :menu:
 :icons: font
 :source-highlighter: codemirror
 :navigation:
 :customjs: ../../asciidoc/js/checkcypher.js
-:footer: Michal Harakal, Docker for Android Developers @ DroidconDE {currentyear}
+:footer: Michal Harakal, DSPSG {currentyear}
 :allow-uri-read:
 :img: img
 :sectids!:
 :logo: {img}/DroidCon_Logo.png
 
 
-== About
-
-{presenter}
-
-Android Developer at Deutsche Telekom AG
-
-include::sections/talk_intro.adoc[]
-
-include::sections/1_history.adoc[]
 
 include::sections/2_docker.adoc[]
 
 include::sections/3_use_cases.adoc[]
 
-include::sections/6_parse.adoc[]
-
-include::sections/7_asciidoc.adoc[]
-
-
-include::sections/11_tips.adoc[]		
-
-include::sections/12_images.adoc[]		
-
-include::sections/13_end.adoc[]		
 
 

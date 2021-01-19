@@ -3,8 +3,8 @@
 [role=center]
 ++++
 <blockquote lang="en">
-<p><b>Build, Ship, Run</b></p>
-<p>An open platform for distributed applications for developers and sysadmins</p>
+<p><b>Docker</b></p>
+<p>Docker is an open platform for developing, shipping, and running applications</p>
 </p>&mdash; Docker.com
 </blockquote>
 ++++
@@ -19,13 +19,11 @@ image::{img}/ContainerVM.png[]
 * union file system
 * layers
 
-
 == Docker is
 * open source
 * lightweight
 * quick
-* evolving quickly
-
+* mature
 
 
 == Architecture
@@ -33,56 +31,4 @@ image::{img}/ContainerVM.png[]
 [role="canvas-caption", position="right"] 
 image::{img}/Docker_Architecture.png[]
 
-== Dockerfile
 
-* FROM
-* ADD
-* RUN
-* ...
-
-== Dockerfile for AOSP
-
-[source,bash,role=big,options=step]
-----
-# Minimum Docker image to build Android AOSP
-FROM ubuntu:14.04
-
-MAINTAINER Kyle Manna <kyle@kylemanna.com>
-
-# /bin/sh points to Dash by default, reconfigure to use bash until Android
-# build becomes POSIX compliant
-RUN echo "dash dash/sh boolean false" | debconf-set-selections && \
-    dpkg-reconfigure -p critical dash
-
-RUN apt-get update && \
-    apt-get install -y bc bison bsdmainutils build-essential curl \
-        flex g++-multilib gcc-multilib git gnupg gperf lib32ncurses5-dev \
-        lib32readline-gplv2-dev lib32z1-dev libesd0-dev libncurses5-dev \
-        libsdl1.2-dev libwxgtk2.8-dev libxml2-utils lzop \
-        openjdk-7-jdk \
-        pngcrush schedtool xsltproc zip zlib1g-dev && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-----
-
-== Other tools from Docker Inc.
-
-* Docker machine
-* Docker compose
-* Docker toolbox
-* Kitematic
-* Cloud products
-
-== Gettings Started
-
-Docker toolbox
-
-[role="canvas-caption", position="right"] 
-image::{img}/docker_toolbox.png[]
-
-== Hype or a future ?
-
-* single company's product
-* standing on the shoulders of giants
-* Docker controversy, knowing your enemy 
-* huge ecosystem around Docker
-* Open Container Initiative 
