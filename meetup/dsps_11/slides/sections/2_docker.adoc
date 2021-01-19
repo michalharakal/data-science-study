@@ -10,11 +10,11 @@
 ++++
 
 == Docker vs VM
-[role="canvas-caption", position="right"] 
+[role="canvas-caption", position="right"]
 image::{img}/ContainerVM.png[]
 
 == Docker uses
-* Linux kernel container features
+* builtin container features in Linux kernel
 * namespaces and cgroups
 * union file system
 * layers
@@ -28,7 +28,7 @@ image::{img}/ContainerVM.png[]
 
 == Architecture
 
-[role="canvas-caption", position="right"] 
+[role="canvas-caption", position="right"]
 image::{img}/Docker_Architecture.png[]
 
 

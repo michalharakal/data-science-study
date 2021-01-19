@@ -11,30 +11,31 @@
 * Basic Linear Algebra Subprograms (c,c++, fortran ...)
 
 == Docker use cases
-=== Transparent tools
-* complex environments, technology stacks for tools, frameworks with deep dependecies
+=== Transparent cli tools
+* complex environments, technology stacks for tools
+* frameworks with deep dependecies
 * containers can run transparently (bash scripts, aliases)
 
 
 === Transparent tools - samples
-* aws-cli, heroku cli, gcloud 
+* aws-cli, heroku cli, gcloud
 
 [source, bash]
 ----
 function aws_accountA () {
-  docker run --rm -it -v ~/.aws/$ACCOUNT_A:/root/.aws 
+  docker run --rm -it -v ~/.aws/$ACCOUNT_A:/root/.aws
     -v $(pwd):/aws amazon/aws-cli "$@"
 }
 ----
 
-HINT: use bash funtions insetad of alias because of *pwd*
+HINT: use bash functions insetad of alias because of *pwd*
 
 == Docker use cases
 === Runtime environments
 * python based applications
 * application servers, webservers
-* databases (SQL, noSQL) 
-* java/kotlin/jvm 
+* databases (SQL, noSQL)
+* java/kotlin/jvm
 * native (Kotlin Native, GraalVm)
 
 == Docker use cases
@@ -48,8 +49,8 @@ HINT: use bash funtions insetad of alias because of *pwd*
 
 [source, bash]
 ----
-docker run --rm -u $(id -u ${USER}):$(id -g ${USER})   
-  -v $(pwd):/documents/ asciidoctor/docker-asciidoctor asciidoctor-revealjs 
-  -a revealjsdir=https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.9.2 
+docker run --rm -u $(id -u ${USER}):$(id -g ${USER})
+  -v $(pwd):/documents/ asciidoctor/docker-asciidoctor asciidoctor-revealjs
+  -a revealjsdir=https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.9.2
   -r asciidoctor-diagram index.adoc
 ----
