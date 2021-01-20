@@ -1,0 +1,38 @@
+version: '3'
+services:
+  mysql:  
+    image: mysql:5.7.16
+    hostname: my_ms
+    container_name: my_ms 
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '2345:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+      #restart: always
+    environment:
+      MYSQL_DATABASE: 'my_db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'my_user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'my_user_pw'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'root_pw'
+    volumes:
+      - C:\Users\Mike_64\Documents\MLOps_data\20210119\my_db:/var/lib/mysql
+  jupyter:
+    image: my_jn
+    hostname: my_jn
+    container_name: my_jn
+    ports:
+      - 1234:1234
+    volumes:
+      - C:\Users\Mike_64\Documents\MLOps_data\20210119:/home/jovyan
+#    command: "opt/conda/bin/jupyter lab \
+#        --ip='0.0.0.0' \
+#        --port=1235 \
+#        --no-browser \
+#        --allow-root \
+#        --NotebookApp.custom_display_url=http://localhost:1235"
