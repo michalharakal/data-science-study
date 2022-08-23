@@ -1,0 +1,97 @@
+#!/bin/bash
+
+NO_OUTPUT="$1"
+
+# Should already be logged in but it can't hurt
+ibmcloud cr login 1>/dev/null
+
+if [[ "${NO_OUTPUT}" == "true" ]]; then
+  if [ ! -d "/home/project/airflow" ] 
+  then
+    mkdir -p /home/project/airflow
+    sudo cp -n /etc/passwd /home/project/airflow/passwd
+    sudo chmod 777 /home/project/airflow
+    cp /home/theia/.sn/airflow/webserver_config.py /home/project/airflow/webserver_config.py
+    docker run --rm -v /home/project/airflow:/airflow -v /home/project/airflow/passwd:/etc/passwd:ro -u 1000:0 ubuntu sh -c "mkdir /airflow/logs /airflow/plugins /airflow/dags"
+  fi
+
+  docker-compose -p airflow -f /home/theia/docker-compose/airflow.yml up airflow-init
+  docker-compose -p airflow -f /home/theia/docker-compose/airflow.yml up -d
+  exit 0
+fi
+
+export AIRFLOW_WEBSERVER_URL=https://${USERNAME}-8080.$(echo $TOOL_DOMAIN | sed 's/\.labs\./.proxy./g')
+
+check_airflow()
+{
+  local -r pid="${1}"
+  local -r delay='5'
+  local spinstr='\|/-'
+  local temp
+
+  services_up=$(docker-compose -p airflow -f /home/theia/docker-compose/airflow.yml ps | grep "(healthy)" | wc -l)
+  while [[ "${services_up}" -ne "7" ]]
+  do
+    temp="${spinstr#?}"
+    printf " [%c]  " "${spinstr}"
+    spinstr=${temp}${spinstr%"${temp}"}
+    sleep "${delay}"
+    printf "\b\b\b\b\b\b"
+    services_up=$(docker-compose -p airflow -f /home/theia/docker-compose/airflow.yml ps | grep "(healthy)" | wc -l)
+  done
+
+  printf "    \b\b\b\b"
+}
+
+echo "Starting Airflow"
+echo "This process can take up to 15 minutes..."
+
+if [ ! -d "/home/project/airflow" ] 
+then
+  echo " - Initializing configuration"
+  mkdir -p /home/project/airflow
+  sudo cp -n /etc/passwd /home/project/airflow/passwd
+  sudo chmod 777 /home/project/airflow
+  cp /home/theia/.sn/airflow/webserver_config.py /home/project/airflow/webserver_config.py
+  docker run --rm -v /home/project/airflow:/airflow -v /home/project/airflow/passwd:/etc/passwd:ro -u 1000:0 ubuntu sh -c "mkdir /airflow/logs /airflow/plugins /airflow/dags" > /dev/null 2>&1
+fi
+
+final_url=${AIRFLOW_WEBSERVER_URL}
+
+echo " - Running the Airflow initialization Service"
+spinner docker-compose -p airflow -f /home/theia/docker-compose/airflow.yml up airflow-init
+
+echo " - Starting Airflow Services"
+spinner docker-compose -p airflow -f /home/theia/docker-compose/airflow.yml up -d
+
+echo ""
+echo "Airflow started, waiting for all services to be ready...."
+
+check_airflow
+
+if [[ -n "${USER_NATS_TOKEN}" ]]; then
+  NATS_URL="https://messaging.skills.network/user/${USERNAME}/airflow.start"
+  if [[  "${TOOL_DOMAIN}" == *"staging"* ]]; then
+    NATS_URL="https://messaging.staging.skills.network/user/${USERNAME}/airflow.start"
+  fi
+  curl --output /dev/null -s --location --request POST $NATS_URL \
+    --header "Authorization: Bearer ${USER_NATS_TOKEN}" \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+    "data": {
+      "URL": "'"$final_url"'"
+    }
+  }'
+fi
+
+echo ""
+echo "Your airflow server is now ready to use and available with username: airflow password: ${AIRFLOW_PASSWORD}"
+echo ""
+echo "You can access your Airflow Webserver at: ${final_url}"
+echo ""
+echo "CommandLine: "
+echo " • List DAGs: airflow dags list"
+echo " • List Tasks: airflow tasks list example_bash_operator"
+echo " • Run an example task: airflow tasks test example_bash_operator runme_1 2015-06-01"
+
+exit 0
