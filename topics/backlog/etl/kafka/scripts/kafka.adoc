@@ -1,0 +1,30 @@
+= Kafka
+
+== Setup
+
+    wget https://archive.apache.org/dist/kafka/2.8.0/kafka_2.12-2.8.0.tgz
+    tar -xzf kafka_2.12-2.8.0.tgz
+
+== Start zookeeper
+
+    cd kafka_2.12-2.8.0
+    bin/zookeeper-server-start.sh config/zookeeper.properties
+
+== Start message broker
+
+    cd kafka_2.12-2.8.0
+    bin/kafka-server-start.sh config/server.properties
+
+== Create topic
+
+    cd kafka_2.12-2.8.0
+    bin/kafka-server-start.sh config/server.properties
+
+== Start producer
+
+    bin/kafka-console-producer.sh --topic news --bootstrap-server localhost:9092
+
+== Start consumer
+
+    cd kafka_2.12-2.8.0
+    bin/kafka-console-consumer.sh --topic news --from-beginning --bootstrap-server localhost:9092
