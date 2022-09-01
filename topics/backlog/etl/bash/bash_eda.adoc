@@ -1,0 +1,44 @@
+= Using unix cli tools for EDA
+
+source:
+https://bconnelly.net/posts/working_with_csvs_on_the_command_line
+
+* awk: AWK is a programming language (and command) that is great for processing text (man page)
+* cat: concatenates and prints files (man page)
+* cut: removes specific bytes, characters, or fields from files (man page)
+* grep: finds lines matching (or not matching) a given pattern (man page)
+* head: outputs the first part of a file (man page)
+* sed: perform simple manipulations to text in a file (man page)
+* tail: outputs the end of a file (man page)
+* tr: changes (translates) characters within a file (man page)
+* wc: counts the number of characters, words, and lines in a file (man page)
+
+
+=== Extracting columns
+Specific columns can also be easily extracted from CSVs. For example, if we wanted to extract columns 2, 4, 5, and 6 from input.csv:
+
+    cut -d , -f 2,4-6 input.csv
+
+Here, the -d , tells cut that columns are separated by commas, and -f 2,4-6 tells it to extract column 2 and columns 4-6. The -f argument can take a single column number or a comma-separated list of numbers and ranges.
+
+=== Links
+    CSV Format
+    Wikipedia pages for CSV and TSV
+    RFC 4180, which is the unofficial standard for CSV.
+    The Python CSV module
+
+== tr
+
+https://linuxhandbook.com/tr-command/
+
+.replace uppercase to lower case
+cat sample.txt | tr 'A-Z' 'a-z'
+
+
+
+== SPONGE
+
+sed '...' file | grep '...' | sponge file
+Description
+
+sponge reads standard input and writes it out to the specified file. Unlike a shell redirect, sponge soaks up all its input before opening the output file. This allows constricting pipelines that read from and write to the same file.
